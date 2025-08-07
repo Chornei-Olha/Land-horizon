@@ -61,23 +61,21 @@ export default function ServicesSection() {
     <div id="services" className="w-full">
       {/* Service Categories */}
       <div className="relative w-full bg-white py-[50px] px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="relative z-0">
-          {/* Левая маска */}
-          <div className="pointer-events-none absolute left-0 top-0 h-full w-10 z-10 bg-gradient-to-r from-white to-transparent"></div>
-          {/* Правая маска */}
-          <div className="pointer-events-none absolute right-0 top-0 h-full w-10 z-10 bg-gradient-to-l from-white to-transparent"></div>
+        {/* Маски по краям */}
+        <div className="pointer-events-none absolute left-0 top-0 h-full w-10 z-10 bg-gradient-to-r from-white to-transparent"></div>
+        <div className="pointer-events-none absolute right-0 top-0 h-full w-10 z-10 bg-gradient-to-l from-white to-transparent"></div>
 
-          <div className="overflow-x-auto scrollbar-hide">
-            <div className="flex gap-4 sm:gap-6 w-max px-10">
-              {serviceCategories.map((category, index) => (
-                <button
-                  key={index}
-                  className="whitespace-nowrap px-6 md:px-8 py-4 rounded-[24px] text-[15px] md:text-[16px] font-inter font-normal text-black bg-[#f5f5f5]"
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
+        {/* Бесконечный скролл */}
+        <div className="overflow-hidden">
+          <div className="flex w-max animate-marquee gap-6">
+            {[...serviceCategories, ...serviceCategories].map((category, index) => (
+              <div
+                key={index}
+                className="min-w-[160px] px-5 py-3 rounded-[30px] bg-white/60 shadow-[0_2px_6px_rgba(0,0,0,0.04)] border border-gray-200 text-center transition-transform duration-300 backdrop-blur-md hover:scale-[1.02]"
+              >
+                <p className="text-[15px] font-inter text-gray-600">{category}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

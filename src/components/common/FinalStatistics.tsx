@@ -2,15 +2,17 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-function useCountUp(to: number, duration = 2000) {
+function useCountUp(start: boolean, to: number, duration = 2000) {
   const [count, setCount] = useState(0);
-  const frame = useRef(0);
-  const start = useRef<number | null>(null);
+  const frame = useRef<number | null>(null);
+  const startTime = useRef<number | null>(null);
 
   useEffect(() => {
+    if (!start) return;
+
     const step = (timestamp: number) => {
-      if (!start.current) start.current = timestamp;
-      const progress = timestamp - start.current;
+      if (!startTime.current) startTime.current = timestamp;
+      const progress = timestamp - startTime.current;
       const percent = Math.min(progress / duration, 1);
       setCount(Math.floor(to * percent));
       if (percent < 1) {
@@ -19,8 +21,12 @@ function useCountUp(to: number, duration = 2000) {
     };
 
     frame.current = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(frame.current);
-  }, [to, duration]);
+
+    return () => {
+      if (frame.current) cancelAnimationFrame(frame.current);
+      startTime.current = null;
+    };
+  }, [start, to, duration]);
 
   return count;
 }
@@ -32,7 +38,7 @@ export default function FinalStatistics() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) setStart(true);
+        setStart(entry.isIntersecting); // true, когда в зоне видимости
       },
       { threshold: 0.5 }
     );
@@ -56,7 +62,7 @@ export default function FinalStatistics() {
         <div className="bg-global-13 rounded-[10px] p-6">
           <div className="flex flex-col sm:flex-row justify-center items-center divide-y sm:divide-y-0 sm:divide-x divide-global-2">
             {statistics.map((stat, index) => {
-              const count = useCountUp(start ? stat.value : 0);
+              const count = useCountUp(start, stat.value);
 
               return (
                 <div key={index} className="flex-1 text-center py-4 sm:py-0 sm:px-8">

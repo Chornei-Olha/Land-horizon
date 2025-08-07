@@ -5,10 +5,10 @@ import Image from 'next/image';
 export default function Footer() {
   return (
     <footer className="w-full bg-global-11 py-[64px] px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-[1204px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+      <div className="w-full container mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Company Info */}
-          <div>
+          <div className="col-span-1">
             <h3 className="text-[16px] sm:text-[17px] md:text-[18px] font-montserrat font-semibold leading-[20px] sm:leading-[21px] md:leading-[22px] text-global-5 mb-6">
               ЗЕМЕЛЬНИЙ ГОРИЗОНТ
             </h3>
@@ -33,20 +33,20 @@ export default function Footer() {
           </div>
 
           {/* Contact Info */}
-          <div className="text-left">
+          <div className="text-left sm:text-center col-span-1 sm:col-span-2">
             <p className="text-[32px] sm:text-[36px] md:text-[42px] font-abel font-normal leading-[40px] sm:leading-[46px] md:leading-[54px] text-global-8 mb-4">
               +38 (067) 000 00 00
             </p>
             <p className="text-[18px] sm:text-[19px] md:text-[20px] font-actor font-normal leading-[22px] sm:leading-[24px] md:leading-[25px] text-global-7 mb-8">
               Офіс: м.Київ, вул. Волинська, 67
             </p>
-            <p className="text-[48px] sm:text-[60px] md:text-[88px] break-words font-actor font-normal leading-[60px] sm:leading-[72px] md:leading-[106px] text-global-8">
+            <p className="text-[48px] sm:text-[60px] md:text-[70px] break-words font-actor font-normal leading-[60px] sm:leading-[72px] md:leading-[106px] text-global-8">
               info@loremipsum.ua
             </p>
           </div>
 
           {/* Social Media & Contact */}
-          <div className="flex flex-col items-start lg:items-end">
+          <div className="flex flex-col items-start lg:items-end col-span-1">
             <div className="mb-8">
               <h3 className="text-[16px] sm:text-[17px] md:text-[18px] font-montserrat font-semibold leading-[20px] sm:leading-[21px] md:leading-[22px] text-global-5 mb-5">
                 Завжди на зв'язку

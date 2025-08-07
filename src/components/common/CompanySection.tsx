@@ -1,17 +1,81 @@
+'use client';
+
 import Image from 'next/image';
+import { useEffect, useRef, useState } from 'react';
 
-interface Statistic {
-  number: string | number;
-  title: string;
-  description: string;
-  image: string;
+// 🔁 Кастомный хук анимации чисел
+function useCountUp(to: number, duration = 2000) {
+  const [count, setCount] = useState(0);
+  const frame = useRef(0);
+  const start = useRef<number | null>(null);
+
+  useEffect(() => {
+    const step = (timestamp: number) => {
+      if (!start.current) start.current = timestamp;
+      const progress = timestamp - start.current;
+      const percent = Math.min(progress / duration, 1);
+      setCount(Math.floor(to * percent));
+      if (percent < 1) {
+        frame.current = requestAnimationFrame(step);
+      }
+    };
+
+    frame.current = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(frame.current);
+  }, [to, duration]);
+
+  return count;
 }
 
-interface CompanySectionProps {
-  statistics: Statistic[];
-}
+export default function CompanySection() {
+  const [start, setStart] = useState(false);
+  const ref = useRef<HTMLDivElement | null>(null);
 
-export default function CompanySection({ statistics }: CompanySectionProps) {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setStart(true);
+      },
+      { threshold: 0.4 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => {
+      if (ref.current) observer.unobserve(ref.current);
+    };
+  }, []);
+
+  const statistics = [
+    {
+      number: 2011,
+      suffix: '',
+      title: 'рік заснування компанії',
+      description: 'Ми розвиваємо ринок нерухомості понад десятиліття.',
+      image: '/images/rounds1.webp',
+    },
+    {
+      number: 12,
+      suffix: '+',
+      title: 'років досвіду',
+      description: 'Наші кейси — це стабільність, масштаб і довіра клієнтів.',
+      image: '/images/rounds3.webp',
+    },
+    {
+      number: 450,
+      suffix: '+',
+      title: 'реалізованих проєктів',
+      description: 'Від ділянок до логістичних парків — ми доводимо до результату.',
+      image: '/images/rounds2.webp',
+    },
+    {
+      number: 180,
+      suffix: '+',
+      title: 'постійних клієнтів',
+      description: 'Девелопери, агрохолдинги, бізнеси, приватні інвестори',
+      image: '/images/rounds4.webp',
+    },
+  ];
+
   return (
     <>
       {/* Company Description */}
@@ -27,20 +91,22 @@ export default function CompanySection({ statistics }: CompanySectionProps) {
       </div>
 
       {/* Statistics Section */}
-      <div className="container  mx-auto bg-global-15 pb-[70px] px-4 sm:px-6 lg:px-8">
-        <div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-[30px]">
-            {statistics.map((stat, index) => (
+      <div className="container mx-auto bg-global-15 pb-[70px] px-4 sm:px-6 lg:px-8" ref={ref}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-[30px]">
+          {statistics.map((stat, index) => {
+            const count = useCountUp(start ? stat.number : 0);
+
+            return (
               <div
                 key={index}
                 className={`relative flex flex-col items-start bg-white/5 rounded-lg p-6 pt-4 ${
-                  // Сдвиг вниз только для 12+ (index 1) и 180+ (index 3)
                   index === 1 || index === 3 ? 'lg:mt-[150px]' : ''
                 }`}
               >
                 {/* Number */}
                 <h3 className="text-[48px] sm:text-[60px] md:text-[72px] font-inter font-semibold leading-tight text-global-4">
-                  {stat.number}
+                  {count}
+                  {stat.suffix}
                 </h3>
 
                 {/* Title & Description */}
@@ -53,7 +119,7 @@ export default function CompanySection({ statistics }: CompanySectionProps) {
                   </p>
                 </div>
 
-                {/* Image + Arrow on one line */}
+                {/* Image + Arrow */}
                 {stat.image && (
                   <div className="mt-4 flex items-center gap-4">
                     <Image
@@ -73,8 +139,8 @@ export default function CompanySection({ statistics }: CompanySectionProps) {
                   </div>
                 )}
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </div>
     </>

@@ -3,6 +3,7 @@ import Button from '../ui/Button';
 export default function LandCodeSection() {
   return (
     <section
+      id="land-code"
       className="relative w-full bg-cover bg-center bg-no-repeat py-[100px] "
       style={{
         backgroundImage: "url('/images/landSection.webp')",

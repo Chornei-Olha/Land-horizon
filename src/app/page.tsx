@@ -24,46 +24,6 @@ const HomePage: React.FC = () => {
     comment: '',
   });
 
-  const statisticsData = [
-    {
-      number: '2011',
-      title: 'рік заснування компанії',
-      description: 'Ми розвиваємо ринок нерухомості понад десятиліття.',
-      image: '/images/rounds1.webp',
-    },
-    {
-      number: '12+',
-      title: 'років досвіду',
-      description: 'Наші кейси — це стабільність, масштаб і довіра клієнтів.',
-      image: '/images/rounds3.webp',
-    },
-    {
-      number: '450+',
-      title: 'реалізованих проєктів',
-      description: 'Від ділянок до логістичних парків — ми доводимо до результату.',
-      image: '/images/rounds2.webp',
-    },
-    {
-      number: '180+',
-      title: 'постійних клієнтів',
-      description: 'Девелопери, агрохолдинги, бізнеси, приватні інвестори',
-      image: '/images/rounds4.webp',
-    },
-  ];
-
-  const serviceCategories = [
-    'Земля та земельне право',
-    'Комерційна нерухомість',
-    'Промислова нерухомість',
-    'Продаж/придбання бізнесу',
-    'Будівництво',
-    'Комерційна',
-  ];
-
-  const toggleFAQ = (index: number) => {
-    setFaqs((prev) => prev.map((faq, i) => (i === index ? { ...faq, isOpen: !faq.isOpen } : faq)));
-  };
-
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
@@ -100,13 +60,11 @@ const HomePage: React.FC = () => {
       <div className="flex flex-col justify-start items-center w-full">
         <HeroSection />
 
-        <CompanySection statistics={statisticsData} />
+        <CompanySection />
 
         <AboutSection />
 
-        <ServicesSection
-          serviceCategories={['Земельне право', 'Комерційна нерухомість', 'Промислова нерухомість']}
-        />
+        <ServicesSection />
 
         <LandCodeSection />
 

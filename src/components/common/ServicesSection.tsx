@@ -1,139 +1,203 @@
 'use client';
 
+import { useRef } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
 import Image from 'next/image';
-import { useState } from 'react';
-import Button from '@/components/ui/Button';
 
-interface ServicesSectionProps {
-  serviceCategories: string[];
-}
+export default function ServicesSection() {
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
 
-export default function ServicesSection({ serviceCategories }: ServicesSectionProps) {
-  const [activeTab, setActiveTab] = useState(serviceCategories[0]);
+  const serviceCategories = [
+    'Земля та земельне право',
+    'Комерційна нерухомість',
+    'Промислова нерухомість',
+    'Продаж/придбання бізнесу',
+    'Будівництво',
+  ];
+
+  const services = [
+    {
+      image: '/images/example.png',
+      title: 'Земля та земельне право',
+      description:
+        "Оформлення, зміна цільового призначення, розподіл, об'єднання, аудит правового статусу. Працюємо з усіма формами власності. Повний супровід до результату.",
+      icon: '/images/img_icon.svg',
+    },
+    {
+      image: '/images/example.png',
+      title: 'Комерційна нерухомість',
+      description:
+        "Оформлення, зміна цільового призначення, розподіл, об'єднання, аудит правового статусу. Працюємо з усіма формами власності. Повний супровід до результату.",
+      icon: '/images/img_icon.svg',
+    },
+    {
+      image: '/images/example.png',
+      title: 'Промислова нерухомість',
+      description:
+        "Оформлення, зміна цільового призначення, розподіл, об'єднання, аудит правового статусу. Працюємо з усіма формами власності. Повний супровід до результату.",
+      icon: '/images/img_icon.svg',
+    },
+    {
+      image: '/images/example.png',
+      title: 'Продаж/придбання бізнесу',
+      description:
+        "Оформлення, зміна цільового призначення, розподіл, об'єднання, аудит правового статусу. Працюємо з усіма формами власності. Повний супровід до результату.",
+      icon: '/images/img_icon.svg',
+    },
+    {
+      image: '/images/example.png',
+      title: 'Будівництво',
+      description:
+        "Оформлення, зміна цільового призначення, розподіл, об'єднання, аудит правового статусу. Працюємо з усіма формами власності. Повний супровід до результату.",
+      icon: '/images/img_icon.svg',
+    },
+  ];
 
   return (
-    <div className="w-full">
+    <div id="services" className="w-full">
       {/* Service Categories */}
-      <div className="w-full bg-global-15 py-[40px] px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-[1204px] mx-auto">
-          <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
-            {serviceCategories.map((category, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveTab(category)}
-                className={`px-4 sm:px-6 md:px-8 py-3 rounded-[24px] text-[14px] sm:text-[15px] md:text-[16px] font-inter font-normal leading-[18px] sm:leading-[19px] md:leading-[20px] text-center transition-all duration-200 shadow-[0px_3px_1px_#ffffff] ${
-                  activeTab === category
-                    ? 'bg-button-1 text-global-10'
-                    : 'bg-global-13 text-global-1 hover:bg-global-12'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
+      <div className="relative w-full bg-white py-[50px] px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="relative z-0">
+          {/* Левая маска */}
+          <div className="pointer-events-none absolute left-0 top-0 h-full w-10 z-10 bg-gradient-to-r from-white to-transparent"></div>
+          {/* Правая маска */}
+          <div className="pointer-events-none absolute right-0 top-0 h-full w-10 z-10 bg-gradient-to-l from-white to-transparent"></div>
+
+          <div className="overflow-x-auto scrollbar-hide">
+            <div className="flex gap-4 sm:gap-6 w-max px-10">
+              {serviceCategories.map((category, index) => (
+                <button
+                  key={index}
+                  className="whitespace-nowrap px-6 md:px-8 py-4 rounded-[24px] text-[15px] md:text-[16px] font-inter font-normal text-black bg-[#f5f5f5]"
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Services Content */}
-      <div
-        className="w-full bg-cover bg-center bg-no-repeat py-[80px] px-4 sm:px-6 lg:px-8"
-        style={{ backgroundImage: "url('/images/img_.png')" }}
-      >
-        <div className="w-full max-w-[1204px] mx-auto">
+      <div className="w-full bg-[#000] py-[50px] px-4 sm:px-6 lg:px-8 relative">
+        <div className="w-full container mx-auto">
+          <h2 className="text-[32px] sm:text-[40px] md:text-[48px] font-manrope font-medium leading-[44px] sm:leading-[56px] md:leading-[66px] text-left text-global-10 mb-4">
+            Послуги
+          </h2>
+
+          {/* Навигационные кнопки Swiper — вынесены за пределы карточек */}
+          <button
+            ref={prevRef}
+            className="absolute top-1/2 left-20 z-20 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full border-2 border-orange-300 text-orange-300 hover:bg-[#a96f44] hover:text-black transition"
+            aria-label="Previous slide"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
+              className="w-6 h-6"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            ref={nextRef}
+            className="absolute top-1/2 right-20 z-20 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full border-2 border-orange-300 text-orange-300 hover:bg-[#a96f44] hover:text-black transition"
+            aria-label="Next slide"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
+              className="w-6 h-6"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
           {/* Service Cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-[30px]">
-            {/* Service 1 */}
-            <div className="flex flex-col gap-6">
-              <div className="relative bg-black bg-opacity-45 rounded-[10px] p-5">
-                <div className="absolute top-4 right-4">
-                  <div className="w-[44px] h-[44px] bg-global-12 rounded-full flex items-center justify-center">
-                    <Image src="/images/img_icon.svg" alt="icon" width={44} height={44} />
+          <Swiper
+            spaceBetween={30}
+            slidesPerView={1}
+            modules={[Navigation]}
+            navigation={{
+              prevEl: prevRef.current,
+              nextEl: nextRef.current,
+            }}
+            onSwiper={(swiper) => {
+              // Инициализация навигации с рефами кнопок
+              setTimeout(() => {
+                if (swiper.params.navigation) {
+                  swiper.params.navigation.prevEl = prevRef.current;
+                  swiper.params.navigation.nextEl = nextRef.current;
+                  swiper.navigation.destroy();
+                  swiper.navigation.init();
+                  swiper.navigation.update();
+                }
+              });
+            }}
+            breakpoints={{
+              1024: {
+                slidesPerView: 3,
+              },
+            }}
+            className="group"
+          >
+            {services.map((service, index) => (
+              <SwiperSlide key={index}>
+                <div className="flex flex-col gap-6">
+                  {/* Карточка с hover */}
+                  <div className="relative overflow-hidden rounded-[10px] group/card cursor-pointer">
+                    {/* Фото с эффектом масштабирования */}
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      width={432}
+                      height={400}
+                      className="w-full transition-transform duration-300 ease-in-out group-hover/card:scale-105"
+                    />
+
+                    {/* Затемнение фона при наведении */}
+                    <div className="absolute inset-0 bg-black bg-opacity-0 transition duration-300 group-hover/card:bg-opacity-60" />
+
+                    {/* Иконка поверх — по умолчанию видимая, исчезает при hover */}
+                    <div className="absolute top-4 right-4 z-10 transition-opacity duration-300 group-hover/card:opacity-0">
+                      <div className="w-[44px] h-[44px] bg-global-12 rounded-full flex items-center justify-center">
+                        <Image src={service.icon} alt="icon" width={24} height={24} />
+                      </div>
+                    </div>
+
+                    {/* Текст появляется при hover */}
+                    {service.description && (
+                      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center opacity-0 transition-opacity duration-300 group-hover/card:opacity-100 px-4 text-center">
+                        <p className="text-[16px] font-inter font-medium text-global-10 bg-global-4 p-7 rounded-lg border-2 border-orange-300">
+                          {service.description}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Заголовок и кнопка */}
+                  <div className="text-center">
+                    <h3 className="text-center text-[24px] sm:text-[28px] md:text-[30px] font-inter font-semibold text-left text-global-10 mb-4">
+                      {service.title}
+                    </h3>
+                    <button className="bg-[linear-gradient(270deg,#efdc97_0%,_#a96f44_100%)] text-[16px] font-montserrat font-semibold leading-[20px] text-center text-global-10 rounded-[30px] px-8 py-3 sm:px-[34px] sm:py-3 shadow-[0px_4px_15px_#303b5726] hover:animate-pulse-custom">
+                      Надіслати запит
+                    </button>
                   </div>
                 </div>
-                <div className="pt-[274px]">
-                  <Image
-                    src="/images/img_container.svg"
-                    alt="container"
-                    width={238}
-                    height={152}
-                    className="mb-4"
-                  />
-                  <p className="text-[16px] font-inter font-medium leading-[22px] text-left text-global-10">
-                    Оформлення, зміна цільового призначення, розподіл, об'єднання, аудит правового
-                    статусу. Працюємо з усіма формами власності. Повний супровід до результату.
-                  </p>
-                </div>
-              </div>
-              <div className="text-center">
-                <p className="text-[16px] font-inter font-medium leading-[22px] text-left text-global-9 mb-2">
-                  Paris, France
-                </p>
-                <p className="text-[16px] font-inter font-medium leading-[22px] text-left text-global-9">
-                  2019
-                </p>
-              </div>
-            </div>
-
-            {/* Service 2 */}
-            <div className="flex flex-col gap-6">
-              <Image
-                src="/images/img_wzbchnkcv4gxhsv.png"
-                alt="service 2"
-                width={432}
-                height={624}
-                className="w-full rounded-[10px]"
-              />
-              <div className="text-center">
-                <p className="text-[16px] font-inter font-medium leading-[22px] text-left text-global-9 mb-2">
-                  Madrid, Spain
-                </p>
-                <p className="text-[16px] font-inter font-medium leading-[22px] text-left text-global-9">
-                  2021
-                </p>
-              </div>
-            </div>
-
-            {/* Service 3 */}
-            <div className="flex flex-col gap-6">
-              <Image
-                src="/images/img_6vpaccqjbr6q7c0.png"
-                alt="service 3"
-                width={432}
-                height={578}
-                className="w-full rounded-[10px]"
-              />
-              <div className="text-center">
-                <p className="text-[16px] font-inter font-medium leading-[22px] text-left text-global-9 mb-2">
-                  Amsterdam, Netherlands
-                </p>
-                <p className="text-[16px] font-inter font-medium leading-[22px] text-left text-global-9">
-                  2023
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Service Titles */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-[30px] mt-8">
-            {[
-              'Земля та земельне право',
-              'Комерційна нерухомість',
-              'Промислова нерухомість',
-              'Промислова нерухомість',
-              'Продаж/придбання бізнесу',
-              'Будівництво',
-              'Комерційна нерухомість',
-            ].map((title, i) => (
-              <div key={i}>
-                <h3 className="text-[24px] sm:text-[28px] md:text-[30px] font-inter font-semibold leading-[30px] sm:leading-[34px] md:leading-[37px] text-left text-global-10 mb-4">
-                  {title}
-                </h3>
-                <Button className="bg-[linear-gradient(270deg,#efdc97_0%,_#a96f44_100%)] text-[14px] font-montserrat font-semibold leading-[18px] text-center text-global-10 shadow-[0px_0px_10px_#00000019] rounded-[20px] px-4 py-2">
-                  Надіслати запит
-                </Button>
-              </div>
+              </SwiperSlide>
             ))}
-          </div>
+          </Swiper>
 
           {/* Service Features */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">

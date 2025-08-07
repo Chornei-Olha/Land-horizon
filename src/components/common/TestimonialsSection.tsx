@@ -41,8 +41,8 @@ export default function TestimonialsSection() {
     ));
 
   return (
-    <section className="w-full bg-global-15 py-[86px] px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-[1204px] mx-auto">
+    <section id="reviews" className="w-full bg-global-15 py-[86px] px-4 sm:px-6 lg:px-8">
+      <div className="w-full container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((testimonial, index) => (
             <div

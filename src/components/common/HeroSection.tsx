@@ -40,9 +40,9 @@ export default function HeroSection() {
                 Професійний супровід стратегічної нерухомості — від земельних ділянок до готових
                 підприємств.
               </p>
-              <Button className="bg-[linear-gradient(270deg,#efdc97_0%,_#a96f44_100%)] text-[14px] font-montserrat font-semibold leading-[18px] text-center text-global-10 shadow-[0px_0px_10px_#00000019] rounded-[20px] px-3 py-3 sm:px-4 sm:py-3 md:px-6 md:py-4">
+              <button className="bg-[linear-gradient(270deg,#efdc97_0%,_#a96f44_100%)] text-[16px] font-montserrat font-semibold leading-[20px] text-center text-global-10 rounded-[30px] px-8 py-3 sm:px-[34px] sm:py-3 shadow-[0px_4px_15px_#303b5726] animate-pulse-custom">
                 Залишити заявку
-              </Button>
+              </button>
             </div>
           </div>
           {/* Social Media Sidebar */}

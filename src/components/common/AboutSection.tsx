@@ -10,7 +10,7 @@ interface StatItemProps {
 
 export default function AboutSection() {
   return (
-    <div className="w-full relative">
+    <div id="about" className="w-full relative">
       <div className="w-full container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex items-center justify-between py-[56px]">
@@ -21,7 +21,6 @@ export default function AboutSection() {
           <div className="w-[36%] h-[2px] bg-global-7"></div>
         </div>
 
-        {/* About Content */}
         {/* About Content */}
         <div className="relative">
           <div className="w-full bg-global-6 rounded-[20px] p-8 sm:p-12 md:p-16 lg:p-0 h-full">
@@ -46,7 +45,7 @@ export default function AboutSection() {
                   агросектором, міжнародними фондами. Наша головна спеціалізація — земля, промислові
                   об'єкти, бізнес-активи і складні транзакції.
                 </p>
-                <button className="bg-[linear-gradient(270deg,#efdc97_0%,_#a96f44_100%)] text-[14px] font-montserrat font-semibold leading-[18px] text-global-10 shadow-[0px_0px_10px_#00000019] rounded-3xl px-6 py-4 self-start">
+                <button className="bg-[linear-gradient(270deg,#efdc97_0%,_#a96f44_100%)] text-[16px] font-montserrat font-semibold leading-[20px] text-center text-global-10 rounded-[30px] px-8 py-3 sm:px-[34px] sm:py-3 shadow-[0px_4px_15px_#303b5726] animate-pulse-custom">
                   Залишити заявку
                 </button>
               </div>

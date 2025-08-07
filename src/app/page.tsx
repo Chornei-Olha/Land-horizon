@@ -1,8 +1,6 @@
 'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Button from '@/components/ui/Button';
-import EditText from '@/components/ui/EditText';
 import HeroSection from '../components/common/HeroSection';
 import CompanySection from '../components/common/CompanySection';
 import AboutSection from '../components/common/AboutSection';
@@ -16,8 +14,6 @@ import ContactFormSection from '../components/common/ContactFormSection';
 import Footer from '../components/common/Footer';
 
 const HomePage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('Земля та земельне право');
-
   const [formData, setFormData] = useState({
     name: '',
     phone: '',

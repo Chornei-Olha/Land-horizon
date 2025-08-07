@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-global-11 py-[64px] px-4 sm:px-6 lg:px-8">
+    <footer id="contacts" className="w-full bg-global-11 py-[64px] px-4 sm:px-6 lg:px-8">
       <div className="w-full container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Company Info */}
@@ -52,21 +52,39 @@ export default function Footer() {
                 Завжди на зв'язку
               </h3>
               <div className="flex items-center gap-6 mb-6">
-                <Image src="/images/img_fb_capital_svg.svg" alt="facebook" width={28} height={28} />
-                <Image
-                  src="/images/img_inst_capital_svg.svg"
-                  alt="instagram"
-                  width={28}
-                  height={28}
-                />
-                <Image src="/images/img_group.png" alt="tiktok" width={28} height={28} />
+                <a href="https://facebook.com/yourpage" target="_blank" rel="noopener noreferrer">
+                  <Image
+                    src="/images/img_fb_capital_svg.svg"
+                    alt="facebook"
+                    width={28}
+                    height={28}
+                  />
+                </a>
+                <a
+                  href="https://instagram.com/yourprofile"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src="/images/img_inst_capital_svg.svg"
+                    alt="instagram"
+                    width={28}
+                    height={28}
+                  />
+                </a>
+                <a href="https://tiktok.com/@yourprofile" target="_blank" rel="noopener noreferrer">
+                  <Image src="/images/img_group.png" alt="tiktok" width={28} height={28} />
+                </a>
               </div>
               <div className="flex items-center gap-2 mb-6">
-                <Image src="/images/img_margin.svg" alt="phone" width={42} height={30} />
-                <p className="text-[16px] font-montserrat font-normal leading-[20px] text-global-5">
-                  +380 73 160 73 82
-                </p>
+                <a href="tel:+380731607382" className="flex items-center">
+                  <Image src="/images/img_margin.svg" alt="phone" width={42} height={30} />
+                  <p className="text-[16px] font-montserrat font-normal leading-[20px] text-global-5 ml-2">
+                    +380 73 160 73 82
+                  </p>
+                </a>
               </div>
+
               <button className="bg-button-1 text-[16px] font-montserrat font-semibold leading-[20px] text-center text-global-10 shadow-[0px_4px_15px_#303b5726] rounded-[20px] px-[30px] py-[10px] w-full hover:bg-button-2 transition-colors duration-200">
                 Зателефонуйте мені
               </button>

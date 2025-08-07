@@ -187,10 +187,18 @@ export default function ServicesSection() {
 
                   {/* Заголовок и кнопка */}
                   <div className="text-center">
-                    <h3 className="text-center text-[24px] sm:text-[28px] md:text-[30px] font-inter font-semibold text-left text-global-10 mb-4">
+                    <h3 className="text-center text-[24px] sm:text-[28px] md:text-[30px] font-inter font-semibold text-global-10 mb-4">
                       {service.title}
                     </h3>
-                    <button className="bg-[linear-gradient(270deg,#efdc97_0%,_#a96f44_100%)] text-[16px] font-montserrat font-semibold leading-[20px] text-center text-global-10 rounded-[30px] px-8 py-3 sm:px-[34px] sm:py-3 shadow-[0px_4px_15px_#303b5726] hover:animate-pulse-custom">
+                    <button
+                      onClick={() => {
+                        const el = document.getElementById('application');
+                        if (el) {
+                          el.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}
+                      className="bg-[linear-gradient(270deg,#efdc97_0%,_#a96f44_100%)] text-[16px] font-montserrat font-semibold leading-[20px] text-center text-global-10 rounded-[30px] px-8 py-3 sm:px-[34px] sm:py-3 shadow-[0px_4px_15px_#303b5726] hover:animate-pulse-custom"
+                    >
                       Надіслати запит
                     </button>
                   </div>

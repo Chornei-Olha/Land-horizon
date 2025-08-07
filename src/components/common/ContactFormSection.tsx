@@ -16,7 +16,7 @@ export default function ContactFormSection() {
   };
 
   return (
-    <div className="w-full bg-global-11 py-[40px] px-4 sm:px-6 lg:px-8">
+    <div id="application" className="w-full bg-global-11 py-[40px] px-4 sm:px-6 lg:px-8">
       <div className="w-full container mx-auto">
         <div className="mb-8">
           <h2 className="text-[16px] sm:text-[17px] md:text-[18px] font-montserrat font-semibold leading-[20px] sm:leading-[21px] md:leading-[22px] text-left text-global-5 mb-4">

@@ -1,6 +1,6 @@
 // components/AboutSection.tsx
 import Image from 'next/image';
-import Button from '../ui/Button';
+import { useState, useEffect, useRef } from 'react';
 
 interface StatItemProps {
   image: string;
@@ -9,6 +9,30 @@ interface StatItemProps {
 }
 
 export default function AboutSection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const imgRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect(); // перестаем слушать, чтобы анимация сработала только один раз
+        }
+      },
+      {
+        threshold: 1.0, // элемент должен быть полностью в зоне видимости
+      }
+    );
+
+    if (imgRef.current) {
+      observer.observe(imgRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
   return (
     <div id="about" className="w-full relative">
       <div className="w-full container mx-auto px-4 sm:px-6 lg:px-8">
@@ -45,7 +69,15 @@ export default function AboutSection() {
                   агросектором, міжнародними фондами. Наша головна спеціалізація — земля, промислові
                   об'єкти, бізнес-активи і складні транзакції.
                 </p>
-                <button className="bg-[linear-gradient(270deg,#efdc97_0%,_#a96f44_100%)] text-[16px] font-montserrat font-semibold leading-[20px] text-center text-global-10 rounded-[30px] px-8 py-3 sm:px-[34px] sm:py-3 shadow-[0px_4px_15px_#303b5726] animate-pulse-custom">
+                <button
+                  onClick={() => {
+                    const el = document.getElementById('application');
+                    if (el) {
+                      el.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="bg-[linear-gradient(270deg,#efdc97_0%,_#a96f44_100%)] text-[16px] font-montserrat font-semibold leading-[20px] text-center text-global-10 rounded-[30px] px-8 py-3 sm:px-[34px] sm:py-3 shadow-[0px_4px_15px_#303b5726] animate-pulse-custom"
+                >
                   Залишити заявку
                 </button>
               </div>
@@ -74,13 +106,21 @@ export default function AboutSection() {
 
               {/* CEO Info */}
               <div className="col-span-1 sm:col-span-1 lg:col-span-2 flex justify-end h-full items-end pr-16">
-                <Image
-                  src="/images/ceo.webp"
-                  alt="ceo"
-                  width={330}
-                  height={493}
-                  className="w-[auto] h-[full]"
-                />
+                <div
+                  ref={imgRef}
+                  className={`w-[330px] transition-opacity duration-1000 ease-in-out ${
+                    isVisible ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  style={{ position: 'relative' }}
+                >
+                  <Image
+                    src="/images/ceo.webp"
+                    alt="ceo"
+                    width={330}
+                    height={493}
+                    style={{ objectFit: 'contain' }}
+                  />
+                </div>
               </div>
             </div>
           </div>

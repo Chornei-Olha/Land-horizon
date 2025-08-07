@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Header from './Header';
-import Button from '../ui/Button';
+import Link from 'next/link';
 
 export default function HeroSection() {
   return (
@@ -15,7 +15,10 @@ export default function HeroSection() {
           {/* Overlay */}
           <div className="absolute inset-0 bg-black bg-opacity-30"></div>
           {/* Logo */}
-          <div className="absolute top-[26px] left-4 sm:left-8 flex flex-col items-center z-20">
+          <Link
+            href="/"
+            className="absolute top-[26px] left-4 sm:left-8 flex flex-col items-center z-20"
+          >
             <Image
               src="/images/logo.webp"
               alt="logo"
@@ -23,7 +26,7 @@ export default function HeroSection() {
               height={114}
               className="w-[54px] h-[57px] sm:w-[80px] sm:h-[85px] md:w-[108px] md:h-[114px]"
             />
-          </div>
+          </Link>
 
           {/* Header */}
           <Header className="absolute top-0 left-0 right-0 z-20" />
@@ -40,21 +43,36 @@ export default function HeroSection() {
                 Професійний супровід стратегічної нерухомості — від земельних ділянок до готових
                 підприємств.
               </p>
-              <button className="bg-[linear-gradient(270deg,#efdc97_0%,_#a96f44_100%)] text-[16px] font-montserrat font-semibold leading-[20px] text-center text-global-10 rounded-[30px] px-8 py-3 sm:px-[34px] sm:py-3 shadow-[0px_4px_15px_#303b5726] animate-pulse-custom">
+              <button
+                onClick={() => {
+                  const el = document.getElementById('application');
+                  if (el) {
+                    el.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="bg-[linear-gradient(270deg,#efdc97_0%,_#a96f44_100%)] text-[16px] font-montserrat font-semibold leading-[20px] text-center text-global-10 rounded-[30px] px-8 py-3 sm:px-[34px] sm:py-3 shadow-[0px_4px_15px_#303b5726] animate-pulse-custom"
+              >
                 Залишити заявку
               </button>
             </div>
           </div>
           {/* Social Media Sidebar */}
           <div className="absolute left-[36px] top-1/2 transform -translate-y-1/2 hidden lg:flex flex-col items-center gap-[46px] bg-global-8 rounded-[36px] px-[28px] py-[36px] z-20">
-            {['TWITTER', 'FACEBOOK', 'INSTAGRAM'].map((text, idx) => (
-              <p
+            {[
+              { text: 'TWITTER', href: 'https://twitter.com/yourprofile' },
+              { text: 'FACEBOOK', href: 'https://facebook.com/yourprofile' },
+              { text: 'INSTAGRAM', href: 'https://instagram.com/yourprofile' },
+            ].map(({ text, href }, idx) => (
+              <a
                 key={idx}
-                className="text-[11px] font-krona-one font-normal leading-[15px] text-center text-global-10"
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[11px] font-krona-one font-normal leading-[15px] text-center text-global-10 hover:underline"
                 style={{ writingMode: 'vertical-rl' }}
               >
                 {text}
-              </p>
+              </a>
             ))}
           </div>
         </div>

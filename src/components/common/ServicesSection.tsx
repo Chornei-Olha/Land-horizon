@@ -94,7 +94,7 @@ export default function ServicesSection() {
           {/* Навигационные кнопки Swiper — вынесены за пределы карточек */}
           <button
             ref={prevRef}
-            className="absolute top-[50%] sm:top-1/2 left-5 sm:left-20 z-20 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full border-2 border-orange-300 text-orange-300 hover:bg-[#a96f44] hover:text-black transition"
+            className="absolute top-[50%] sm:top-1/2 left-5 sm:left-15 z-20 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full border-2 border-orange-300 text-orange-300 hover:bg-[#a96f44] hover:text-black transition"
             aria-label="Previous slide"
           >
             <svg
@@ -110,7 +110,7 @@ export default function ServicesSection() {
           </button>
           <button
             ref={nextRef}
-            className="absolute top-[50%] sm:top-1/2 right-5 z-20 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full border-2 border-orange-300 text-orange-300 hover:bg-[#a96f44] hover:text-black transition"
+            className="absolute top-[50%] sm:top-1/2 right-5 sm:right-15 z-20 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full border-2 border-orange-300 text-orange-300 hover:bg-[#a96f44] hover:text-black transition"
             aria-label="Next slide"
           >
             <svg
@@ -191,7 +191,7 @@ export default function ServicesSection() {
 
                   {/* Заголовок и кнопка */}
                   <div className="text-center">
-                    <h3 className="text-center text-[24px] sm:text-[28px] md:text-[30px] font-inter font-semibold text-global-10 mb-4">
+                    <h3 className="text-center text-[24px] sm:text-[25px] md:text-[26px] font-inter font-semibold text-global-10 mb-4">
                       {service.title}
                     </h3>
                     <button

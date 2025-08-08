@@ -95,7 +95,7 @@ export default function CompanySection() {
         className="container mx-auto bg-global-15 pb-[50px] sm:pb-[70px] px-4 sm:px-6 lg:px-8"
         ref={ref}
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-[30px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-8 lg:gap-[30px]">
           {statistics.map((stat, index) => {
             const count = useCountUp(start ? stat.number : 0);
 

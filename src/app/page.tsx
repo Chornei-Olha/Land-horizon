@@ -42,7 +42,7 @@ const HomePage: React.FC = () => {
   return (
     <div className="flex flex-col justify-start items-center w-full">
       {/* Chat Widget */}
-      <div className="fixed bottom-20 right-4 sm:right-8 z-40">
+      <div className="hidden sm:block fixed bottom-20 right-4 sm:right-8 z-40">
         <Image
           src="/images/img_iframe.svg"
           alt="chat"

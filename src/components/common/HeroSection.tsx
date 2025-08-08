@@ -4,9 +4,9 @@ import Link from 'next/link';
 
 export default function HeroSection() {
   return (
-    <div className="relative w-full">
+    <div className="relative w-full overflow-hidden">
       <div
-        className="w-full h-screen min-h-[500px] sm:min-h-[600px] lg:min-h-[800px] bg-cover bg-center bg-no-repeat"
+        className="w-full h-screen min-h-[400px] sm:min-h-[600px] lg:min-h-[800px] bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: "url('/images/bg.webp')",
         }}
@@ -29,17 +29,17 @@ export default function HeroSection() {
           </Link>
 
           {/* Header */}
-          <Header className="absolute top-0 left-0 right-0 z-20" />
+          <Header className="absolute top-0 left-0 right-0 z-10 sm:z-20" />
           {/* Hero Content */}
-          <div className="h-full absolute inset-0 lg:inset-auto lg:right-0 lg:top-1/2 lg:transform lg:-translate-y-1/2 lg:w-1/2 grid items-center justify-center bg-white/30 backdrop-blur-[10px] z-10">
-            <div className="text-center p-8 lg:p-10">
+          <div className="h-full absolute inset-0 lg:inset-auto lg:right-0 top-1/4 lg:top-1/2 lg:transform translate-y-1/4 lg:-translate-y-1/2 lg:w-1/2 grid items-top lg:items-center justify-center bg-white/30 backdrop-blur-[5px] sm:backdrop-blur-[10px] z-10">
+            <div className="text-center p-5 lg:p-10">
               <h1 className="text-[28px] sm:text-[36px] md:text-[48px] lg:text-[56px] font-montserrat font-bold leading-[34px] sm:leading-[44px] md:leading-[58px] lg:leading-[69px] text-center text-global-10 mb-4">
                 Територія рішень
               </h1>
               <h2 className="text-[28px] sm:text-[36px] md:text-[48px] lg:text-[56px] font-montserrat font-medium leading-[34px] sm:leading-[44px] md:leading-[58px] lg:leading-[69px] text-center text-global-10 mb-6">
                 Земля. Бізнес. Майбутнє.
               </h2>
-              <p className="text-[14px] sm:text-[15px] md:text-[16px] font-montserrat font-regular leading-[20px] sm:leading-[22px] md:leading-[25px] text-center text-global-10 mb-8 max-w-[65%] mx-auto">
+              <p className="text-[14px] sm:text-[15px] md:text-[16px] font-montserrat font-regular leading-[20px] sm:leading-[22px] md:leading-[25px] text-center text-global-10 mb-5 sm:mb-8 w-full lg:max-w-[65%] mx-auto">
                 Професійний супровід стратегічної нерухомості — від земельних ділянок до готових
                 підприємств.
               </p>

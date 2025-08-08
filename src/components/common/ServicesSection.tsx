@@ -7,6 +7,10 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import Image from 'next/image';
 
+type SwiperNav = {
+  prevEl: HTMLElement | null;
+  nextEl: HTMLElement | null;
+};
 export default function ServicesSection() {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -90,7 +94,7 @@ export default function ServicesSection() {
           {/* Навигационные кнопки Swiper — вынесены за пределы карточек */}
           <button
             ref={prevRef}
-            className="absolute top-1/2 left-20 z-20 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full border-2 border-orange-300 text-orange-300 hover:bg-[#a96f44] hover:text-black transition"
+            className="absolute top-[50%] sm:top-1/2 left-5 sm:left-20 z-20 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full border-2 border-orange-300 text-orange-300 hover:bg-[#a96f44] hover:text-black transition"
             aria-label="Previous slide"
           >
             <svg
@@ -106,7 +110,7 @@ export default function ServicesSection() {
           </button>
           <button
             ref={nextRef}
-            className="absolute top-1/2 right-20 z-20 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full border-2 border-orange-300 text-orange-300 hover:bg-[#a96f44] hover:text-black transition"
+            className="absolute top-[50%] sm:top-1/2 right-5 z-20 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full border-2 border-orange-300 text-orange-300 hover:bg-[#a96f44] hover:text-black transition"
             aria-label="Next slide"
           >
             <svg
@@ -126,14 +130,16 @@ export default function ServicesSection() {
             spaceBetween={30}
             slidesPerView={1}
             modules={[Navigation]}
-            navigation={{
-              prevEl: prevRef.current,
-              nextEl: nextRef.current,
-            }}
+            navigation={
+              {
+                prevEl: prevRef.current,
+                nextEl: nextRef.current,
+              } as SwiperNav
+            }
             onSwiper={(swiper) => {
               // Инициализация навигации с рефами кнопок
               setTimeout(() => {
-                if (swiper.params.navigation) {
+                if (swiper.params.navigation && typeof swiper.params.navigation !== 'boolean') {
                   swiper.params.navigation.prevEl = prevRef.current;
                   swiper.params.navigation.nextEl = nextRef.current;
                   swiper.navigation.destroy();

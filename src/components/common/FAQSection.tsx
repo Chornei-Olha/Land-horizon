@@ -53,7 +53,7 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="w-full bg-global-15 py-[116px] px-4 sm:px-6 lg:px-8">
+    <section className="w-full bg-global-15 py-[50px] sm:py-[116px] px-4 sm:px-6 lg:px-8">
       <div className="w-full container mx-auto">
         <div className="mb-16">
           <h2 className="text-[32px] sm:text-[40px] md:text-[48px] font-manrope font-medium leading-[44px] sm:leading-[56px] md:leading-[66px] text-left text-global-1 mb-4">

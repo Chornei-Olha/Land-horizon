@@ -79,7 +79,7 @@ export default function CompanySection() {
   return (
     <>
       {/* Company Description */}
-      <div className="container bg-global-15 py-[70px] px-4 sm:px-6 lg:px-8">
+      <div className="container bg-global-15 py-[50px] sm:py-[70px] px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mr-auto">
           <p className="text-[20px] sm:text-[24px] md:text-[30px] font-inter font-semibold leading-[28px] sm:leading-[34px] md:leading-[42px] text-left text-global-4 w-full sm:w-[90%] md:w-[74%]">
             Ми — аналітичне агентство повного циклу, яке спеціалізується на високостратегічних
@@ -91,7 +91,10 @@ export default function CompanySection() {
       </div>
 
       {/* Statistics Section */}
-      <div className="container mx-auto bg-global-15 pb-[70px] px-4 sm:px-6 lg:px-8" ref={ref}>
+      <div
+        className="container mx-auto bg-global-15 pb-[50px] sm:pb-[70px] px-4 sm:px-6 lg:px-8"
+        ref={ref}
+      >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-[30px]">
           {statistics.map((stat, index) => {
             const count = useCountUp(start ? stat.number : 0);

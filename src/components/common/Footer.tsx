@@ -40,7 +40,7 @@ export default function Footer() {
             <p className="text-[18px] sm:text-[19px] md:text-[20px] font-actor font-normal leading-[22px] sm:leading-[24px] md:leading-[25px] text-global-7 mb-8">
               Офіс: м.Київ, вул. Волинська, 67
             </p>
-            <p className="text-[48px] sm:text-[60px] md:text-[70px] break-words font-actor font-normal leading-[60px] sm:leading-[72px] md:leading-[106px] text-global-8">
+            <p className="font-actor font-normal leading-none text-global-8 w-full text-[clamp(24px,5vw,60px)]">
               info@loremipsum.ua
             </p>
           </div>

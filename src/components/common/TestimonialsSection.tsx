@@ -1,4 +1,11 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 interface Testimonial {
   rating: number;
@@ -9,6 +16,17 @@ interface Testimonial {
 }
 
 export default function TestimonialsSection() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 767);
+    };
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
   const testimonials: Testimonial[] = [
     {
       rating: 5,
@@ -41,41 +59,96 @@ export default function TestimonialsSection() {
     ));
 
   return (
-    <section id="reviews" className="w-full bg-global-15 py-[86px] px-4 sm:px-6 lg:px-8">
+    <section
+      id="reviews"
+      className="w-full bg-global-15 py-[50px] sm:py-[86px] px-4 sm:px-6 lg:px-8"
+    >
       <div className="w-full container mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="bg-global-13 rounded-[16px] p-8 border border-transparent shadow-lg hover:border-[#b87333] transition-all duration-300"
+        {isMobile ? (
+          <>
+            <Swiper
+              modules={[Pagination]}
+              pagination={{
+                el: '.custom-pagination',
+                clickable: true,
+                bulletClass:
+                  'swiper-pagination-bullet bg-[#b87333] opacity-40 w-[10px] h-[10px] mx-[4px] rounded-full transition-all duration-300',
+                bulletActiveClass: 'swiper-pagination-bullet-active opacity-100 scale-125',
+              }}
+              spaceBetween={16}
             >
-              <div className="flex gap-2 mb-4">{renderStars(testimonial.rating)}</div>
-              <p className="text-[16px] font-inter font-normal leading-[24px] text-left text-global-1 mb-6">
-                {testimonial.text}
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="bg-global-13 rounded-[5px] p-1 shadow-sm">
-                  <Image
-                    src={testimonial.avatar}
-                    alt={testimonial.author}
-                    width={40}
-                    height={40}
-                    className="rounded-[4px]"
-                  />
-                </div>
-                <div className="w-[2px] h-[48px] bg-global-4"></div>
+              {testimonials.map((testimonial, index) => (
+                <SwiperSlide key={index}>
+                  <div className="bg-global-13 rounded-[16px] p-8 border border-transparent shadow-lg h-[340px] flex flex-col justify-between">
+                    <div>
+                      <div className="flex gap-2 mb-4">{renderStars(testimonial.rating)}</div>
+                      <p className="text-[16px] font-inter font-normal leading-[24px] text-left text-global-1">
+                        {testimonial.text}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-4 mt-6">
+                      <div className="bg-global-13 rounded-[5px] p-1 shadow-sm">
+                        <Image
+                          src={testimonial.avatar}
+                          alt={testimonial.author}
+                          width={40}
+                          height={40}
+                          className="rounded-[4px]"
+                        />
+                      </div>
+                      <div className="w-[2px] h-[48px] bg-global-4"></div>
+                      <div>
+                        <p className="text-[16px] font-inter font-normal leading-[20px] text-left text-global-1">
+                          {testimonial.author}
+                        </p>
+                        <p className="text-[10px] font-montserrat font-medium leading-[13px] text-left text-global-3">
+                          {testimonial.role}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            <div className="custom-pagination flex justify-center mt-4"></div>
+          </>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {testimonials.map((testimonial, index) => (
+              <div
+                key={index}
+                className="bg-global-13 rounded-[16px] p-8 border border-transparent shadow-lg hover:border-[#b87333] transition-all duration-300 h-[340px] flex flex-col justify-between"
+              >
                 <div>
-                  <p className="text-[16px] font-inter font-normal leading-[20px] text-left text-global-1">
-                    {testimonial.author}
+                  <div className="flex gap-2 mb-4">{renderStars(testimonial.rating)}</div>
+                  <p className="text-[16px] font-inter font-normal leading-[24px] text-left text-global-1">
+                    {testimonial.text}
                   </p>
-                  <p className="text-[10px] font-montserrat font-medium leading-[13px] text-left text-global-3">
-                    {testimonial.role}
-                  </p>
+                </div>
+                <div className="flex items-center gap-4 mt-6">
+                  <div className="bg-global-13 rounded-[5px] p-1 shadow-sm">
+                    <Image
+                      src={testimonial.avatar}
+                      alt={testimonial.author}
+                      width={40}
+                      height={40}
+                      className="rounded-[4px]"
+                    />
+                  </div>
+                  <div className="w-[2px] h-[48px] bg-global-4"></div>
+                  <div>
+                    <p className="text-[16px] font-inter font-normal leading-[20px] text-left text-global-1">
+                      {testimonial.author}
+                    </p>
+                    <p className="text-[10px] font-montserrat font-medium leading-[13px] text-left text-global-3">
+                      {testimonial.role}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

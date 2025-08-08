@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function InvestmentSection() {
   return (
-    <section className="container mx-auto py-[86px] px-4 sm:px-6 lg:px-8">
+    <section className="container mx-auto py-[50px] sm:py-[86px] px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 gap-8 lg:gap-12 items-center">
         {/* Заголовок */}
         <div>

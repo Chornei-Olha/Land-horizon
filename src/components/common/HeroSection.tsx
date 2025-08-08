@@ -6,7 +6,7 @@ export default function HeroSection() {
   return (
     <div className="relative w-full">
       <div
-        className="w-full h-screen bg-cover bg-center bg-no-repeat"
+        className="w-full h-screen min-h-[500px] sm:min-h-[600px] lg:min-h-[800px] bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: "url('/images/bg.webp')",
         }}

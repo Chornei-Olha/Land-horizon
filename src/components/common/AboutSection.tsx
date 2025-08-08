@@ -37,12 +37,12 @@ export default function AboutSection() {
     <div id="about" className="w-full relative">
       <div className="w-full container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex items-center justify-between py-[56px]">
-          <div className="w-[36%] h-[2px] bg-global-7"></div>
+        <div className="flex items-center justify-between py-[30px] sm:py-[56px]">
+          <div className="w-[25%] sm:w-[36%] h-[2px] bg-global-7"></div>
           <h2 className="text-[20px] sm:text-[22px] md:text-[24px] font-montserrat font-bold leading-[25px] sm:leading-[28px] md:leading-[30px] text-center uppercase text-global-6 px-4">
             про нас
           </h2>
-          <div className="w-[36%] h-[2px] bg-global-7"></div>
+          <div className="w-[25%] sm:w-[36%] h-[2px] bg-global-7"></div>
         </div>
 
         {/* About Content */}
@@ -54,7 +54,7 @@ export default function AboutSection() {
             ></div>
             <div className="relative z-10 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-12 h-full items-center">
               {/* Company Info */}
-              <div className="flex flex-col items-center lg:items-start text-left col-span-1 sm:col-span-1 lg:col-span-2 pl-16">
+              <div className="flex flex-col items-center lg:items-start text-left col-span-1 sm:col-span-1 lg:col-span-2 pl-0 md:pl-16">
                 <Image
                   src="/images/logo.webp"
                   alt="logo"
@@ -83,7 +83,7 @@ export default function AboutSection() {
               </div>
 
               {/* Statistics Grid */}
-              <div className="grid grid-cols-2 col-span-1 sm:col-span-1 lg:col-span-2 gap-8">
+              <div className="grid grid-cols-2 col-span-1 sm:col-span-1 lg:col-span-2 gap-3 sm:gap-8">
                 <div className="space-y-8">
                   <StatItem image="/images/img_office.png" value="12" label="років на ринку" />
                   <StatItem image="/images/img_hand.png" value="$120+" label="загальна сума угод" />
@@ -105,7 +105,7 @@ export default function AboutSection() {
               </div>
 
               {/* CEO Info */}
-              <div className="col-span-1 sm:col-span-1 lg:col-span-2 flex justify-end h-full items-end pr-16">
+              <div className="col-span-1 sm:col-span-1 lg:col-span-2 flex justify-end h-full items-end pr-0 sm:pr-16">
                 <div
                   ref={imgRef}
                   className={`w-[330px] transition-opacity duration-1000 ease-in-out ${
@@ -126,7 +126,7 @@ export default function AboutSection() {
           </div>
         </div>
 
-        <div className="container mx-auto text-center py-[70px] px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto text-center py-[50px] sm:py-[70px] px-4 sm:px-6 lg:px-8">
           <p className="text-[24px] sm:text-[28px] md:text-[30px] font-inter font-semibold leading-[32px] sm:leading-[38px] md:leading-[42px] text-center text-global-4">
             Кожен наш проєкт — це обґрунтована, юридично безпечна та економічно доцільна операція,
             яка враховує довгострокові інтереси клієнта.

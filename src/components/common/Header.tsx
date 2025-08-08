@@ -52,7 +52,7 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
 
           {/* Mobile Menu Button (всегда сверху) */}
           <button
-            className="block lg:hidden absolute right-[50px] p-2 bg-transparent border-[1px] rounded-full z-50"
+            className="block lg:hidden absolute top-0 right-[30px] p-2 bg-transparent border-[1px] rounded-full z-50"
             aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
@@ -93,7 +93,7 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
           <nav
             className={`${isMenuOpen ? 'block' : 'hidden'} lg:hidden w-full bg-global-15 rounded-5 shadow-lg z-40`}
           >
-            <div className="flex flex-col p-4 space-y-4">
+            <div className="flex flex-col px-4 py-16 space-y-4">
               <Button className="text-[14px] font-montserrat font-bold leading-[18px] text-center text-global-10 bg-[linear-gradient(270deg,#efdc97_0%,_#a96f44_100%)] shadow-[0px_0px_10px_#00000019] rounded-5 p-[11px] w-full">
                 Головна
               </Button>

@@ -6,7 +6,7 @@ export default function HeroSection() {
   return (
     <div className="relative w-full overflow-hidden">
       <div
-        className="w-full h-screen min-h-[400px] sm:min-h-[600px] lg:min-h-[800px] bg-cover bg-center bg-no-repeat"
+        className="w-full h-screen min-h-[370px] sm:min-h-[600px] lg:min-h-[800px] bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: "url('/images/bg.webp')",
         }}
@@ -29,7 +29,7 @@ export default function HeroSection() {
           </Link>
 
           {/* Header */}
-          <Header className="absolute top-0 left-0 right-0 z-10 sm:z-20" />
+          <Header className="absolute top-0 left-0 right-0 z-20 sm:z-20" />
           {/* Hero Content */}
           <div className="h-full absolute inset-0 lg:inset-auto lg:right-0 top-1/4 lg:top-1/2 lg:transform translate-y-1/4 lg:-translate-y-1/2 lg:w-1/2 grid items-top lg:items-center justify-center bg-white/30 backdrop-blur-[5px] sm:backdrop-blur-[10px] z-10">
             <div className="text-center p-5 lg:p-10">
